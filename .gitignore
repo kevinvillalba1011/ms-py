@@ -1,0 +1,17 @@
+# Python dependencies
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+
+# Database
+*.db
+*.sqlite3
+
+# IDEs
+.vscode/
+.idea/

@@ -1,11 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Blueprint, request, jsonify
 import uuid
 
-app = Flask(__name__)
+comercios_bp = Blueprint('comercios', __name__)
 
 comercios = []
 
-@app.route('/comercios', methods=['POST'])
+@comercios_bp.route('/comercios', methods=['POST'])
 def crear_comercio():
     data = request.json
 
@@ -19,10 +19,6 @@ def crear_comercio():
     return jsonify(comercio), 201
 
 
-@app.route('/comercios', methods=['GET'])
+@comercios_bp.route('/comercios', methods=['GET'])
 def listar_comercios():
-    return jsonify(comercios)
-
-
-if __name__ == '__main__':
-    app.run(port=5004, debug=True)
+    return jsonify(comercios)

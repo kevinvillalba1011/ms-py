@@ -1,11 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Blueprint, request, jsonify
 import uuid
 
-app = Flask(__name__)
+billeteras_bp = Blueprint('billeteras', __name__)
 
 billeteras = []
 
-@app.route('/billeteras', methods=['POST'])
+@billeteras_bp.route('/billeteras', methods=['POST'])
 def crear_billetera():
     data = request.json
 
@@ -19,10 +19,6 @@ def crear_billetera():
     return jsonify(billetera), 201
 
 
-@app.route('/billeteras', methods=['GET'])
+@billeteras_bp.route('/billeteras', methods=['GET'])
 def listar_billeteras():
-    return jsonify(billeteras)
-
-
-if __name__ == '__main__':
-    app.run(port=5002, debug=True)
+    return jsonify(billeteras)

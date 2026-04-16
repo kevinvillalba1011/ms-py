@@ -1,12 +1,12 @@
-from flask import Flask, request, jsonify
+from flask import Blueprint, request, jsonify
 import uuid
 import requests
 
-app = Flask(__name__)
+transacciones_bp = Blueprint('transacciones', __name__)
 
 transacciones = []
 
-@app.route('/transacciones', methods=['POST'])
+@transacciones_bp.route('/transacciones', methods=['POST'])
 def crear_transaccion():
     data = request.json
 
@@ -21,10 +21,6 @@ def crear_transaccion():
     return jsonify(transaccion), 201
 
 
-@app.route('/transacciones', methods=['GET'])
+@transacciones_bp.route('/transacciones', methods=['GET'])
 def listar_transacciones():
-    return jsonify(transacciones)
-
-
-if __name__ == '__main__':
-    app.run(port=5003, debug=True)
+    return jsonify(transacciones)
